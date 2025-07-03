@@ -1,0 +1,384 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Soft, feminine color palette with proper contrast */
+    --background: 253 244 255; /* Very light lavender */
+    --foreground: 88 28 135; /* Deep purple for text */
+    --card: 255 255 255; /* Pure white cards */
+    --card-foreground: 88 28 135; /* Deep purple text on cards */
+    --popover: 255 255 255;
+    --popover-foreground: 88 28 135;
+    --primary: 168 85 247; /* Beautiful purple */
+    --primary-foreground: 255 255 255; /* White text on purple */
+    --secondary: 249 168 212; /* Soft pink */
+    --secondary-foreground: 136 19 55; /* Dark pink text */
+    --muted: 250 232 255; /* Very light purple */
+    --muted-foreground: 107 33 168; /* Medium purple */
+    --accent: 236 72 153; /* Bright pink accent */
+    --accent-foreground: 255 255 255; /* White on pink */
+    --destructive: 239 68 68; /* Soft red */
+    --destructive-foreground: 255 255 255;
+    --border: 233 213 255; /* Light purple border */
+    --input: 255 255 255; /* WHITE input backgrounds */
+    --ring: 168 85 247; /* Purple focus ring */
+    --radius: 0.75rem;
+
+    /* Chart colors - feminine palette */
+    --chart-1: 236 72 153; /* Pink */
+    --chart-2: 168 85 247; /* Purple */
+    --chart-3: 147 197 253; /* Light blue */
+    --chart-4: 134 239 172; /* Light green */
+    --chart-5: 251 146 60; /* Soft orange */
+  }
+
+  .dark {
+    --background: 24 24 27;
+    --foreground: 250 250 250;
+    --card: 39 39 42;
+    --card-foreground: 250 250 250;
+    --popover: 39 39 42;
+    --popover-foreground: 250 250 250;
+    --primary: 168 85 247;
+    --primary-foreground: 255 255 255;
+    --secondary: 39 39 42;
+    --secondary-foreground: 250 250 250;
+    --muted: 39 39 42;
+    --muted-foreground: 161 161 170;
+    --accent: 236 72 153;
+    --accent-foreground: 255 255 255;
+    --destructive: 239 68 68;
+    --destructive-foreground: 250 250 250;
+    --border: 39 39 42;
+    --input: 39 39 42;
+    --ring: 168 85 247;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 text-foreground min-h-screen;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+/* CRITICAL: Force all inputs to have white backgrounds and dark text */
+input,
+textarea,
+select {
+  background-color: white !important;
+  color: rgb(88 28 135) !important;
+  border: 1px solid rgb(233 213 255) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: rgb(168 85 247) !important;
+  box-shadow: 0 0 0 3px rgb(168 85 247 / 0.1) !important;
+  outline: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgb(156 163 175) !important;
+}
+
+/* Force select dropdowns to be visible */
+[role="combobox"],
+[role="listbox"],
+[role="option"] {
+  background-color: white !important;
+  color: rgb(88 28 135) !important;
+}
+
+/* Custom parlour-themed styles with proper contrast */
+.parlour-gradient {
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 50%, #ede9fe 100%);
+}
+
+.parlour-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgb(233 213 255 / 0.5) !important;
+  box-shadow: 0 4px 6px -1px rgb(168 85 247 / 0.1);
+}
+
+.parlour-button-primary {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.parlour-button-primary:hover {
+  background: linear-gradient(135deg, #9333ea 0%, #db2777 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgb(168 85 247 / 0.4);
+}
+
+.parlour-button-outline {
+  background: white !important;
+  border: 1px solid rgb(196 181 253) !important;
+  color: rgb(107 33 168) !important;
+  font-weight: 500;
+}
+
+.parlour-button-outline:hover {
+  background: rgb(237 233 254) !important;
+  border-color: rgb(168 85 247) !important;
+  color: rgb(88 28 135) !important;
+}
+
+.parlour-button-danger {
+  background: white !important;
+  border: 1px solid rgb(252 165 165) !important;
+  color: rgb(185 28 28) !important;
+  font-weight: 500;
+}
+
+.parlour-button-danger:hover {
+  background: rgb(254 226 226) !important;
+  border-color: rgb(239 68 68) !important;
+  color: rgb(153 27 27) !important;
+}
+
+.parlour-header {
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%);
+  border-bottom: 1px solid rgb(233 213 255 / 0.8);
+}
+
+.parlour-tabs {
+  background: white !important;
+  border: 1px solid rgb(233 213 255 / 0.5);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.parlour-tab-trigger {
+  background: transparent !important;
+  color: rgb(107 33 168) !important;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.parlour-tab-trigger[data-state="active"] {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%) !important;
+  color: white !important;
+  box-shadow: 0 2px 4px rgb(168 85 247 / 0.3);
+}
+
+.parlour-badge-role {
+  background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%) !important;
+  color: white !important;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.parlour-table {
+  background: white !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgb(168 85 247 / 0.1);
+}
+
+.parlour-table-header {
+  background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%) !important;
+  color: rgb(88 28 135) !important;
+  font-weight: 600;
+}
+
+.parlour-table-row {
+  background: white !important;
+  border-bottom: 1px solid rgb(233 213 255 / 0.3);
+  color: rgb(88 28 135) !important;
+}
+
+.parlour-table-row:hover {
+  background: rgb(250 232 255 / 0.5) !important;
+}
+
+/* Force table cells to have proper colors */
+.parlour-table td,
+.parlour-table th {
+  background: transparent !important;
+  color: rgb(88 28 135) !important;
+}
+
+/* Dialog styling */
+.dialog-content {
+  background: white !important;
+  border: 1px solid rgb(233 213 255) !important;
+  color: rgb(88 28 135) !important;
+}
+
+/* Form labels */
+.form-label {
+  color: rgb(88 28 135) !important;
+  font-weight: 500;
+}
+
+/* Toast styling - FIXED with proper contrast */
+.toast,
+[data-sonner-toast],
+[data-sonner-toaster] [data-sonner-toast] {
+  background: white !important;
+  border: 1px solid rgb(233 213 255) !important;
+  color: rgb(88 28 135) !important;
+  box-shadow: 0 4px 12px rgb(168 85 247 / 0.15) !important;
+  border-radius: 8px !important;
+}
+
+/* Success toast - Green theme with proper contrast */
+.toast[data-type="success"],
+[data-sonner-toast][data-type="success"],
+[data-sonner-toast].success {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border: 1px solid rgb(34 197 94) !important;
+  color: rgb(22 101 52) !important;
+  box-shadow: 0 4px 12px rgb(34 197 94 / 0.2) !important;
+}
+
+/* Error toast - Red theme with proper contrast */
+.toast[data-type="error"],
+[data-sonner-toast][data-type="error"],
+[data-sonner-toast].error,
+[data-sonner-toast][data-type="destructive"] {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+  border: 1px solid rgb(239 68 68) !important;
+  color: rgb(153 27 27) !important;
+  box-shadow: 0 4px 12px rgb(239 68 68 / 0.2) !important;
+}
+
+/* Warning toast - Orange theme with proper contrast */
+.toast[data-type="warning"],
+[data-sonner-toast][data-type="warning"],
+[data-sonner-toast].warning {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+  border: 1px solid rgb(245 158 11) !important;
+  color: rgb(146 64 14) !important;
+  box-shadow: 0 4px 12px rgb(245 158 11 / 0.2) !important;
+}
+
+/* Info toast - Blue theme with proper contrast */
+.toast[data-type="info"],
+[data-sonner-toast][data-type="info"],
+[data-sonner-toast].info {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+  border: 1px solid rgb(59 130 246) !important;
+  color: rgb(30 64 175) !important;
+  box-shadow: 0 4px 12px rgb(59 130 246 / 0.2) !important;
+}
+
+/* Toast title styling */
+.toast [data-title],
+[data-sonner-toast] [data-title],
+.toast-title {
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  margin-bottom: 2px !important;
+  color: inherit !important;
+}
+
+/* Toast description styling */
+.toast [data-description],
+[data-sonner-toast] [data-description],
+.toast-description {
+  font-size: 13px !important;
+  opacity: 0.9 !important;
+  color: inherit !important;
+}
+
+/* Toast close button */
+.toast [data-close-button],
+[data-sonner-toast] [data-close-button] {
+  color: inherit !important;
+  opacity: 0.7 !important;
+}
+
+.toast [data-close-button]:hover,
+[data-sonner-toast] [data-close-button]:hover {
+  opacity: 1 !important;
+}
+
+/* Override any yellow backgrounds in toasts */
+.toast *,
+[data-sonner-toast] * {
+  background-color: transparent !important;
+}
+
+/* Ensure toast container positioning */
+[data-sonner-toaster] {
+  z-index: 9999 !important;
+}
+
+/* Force override for Sonner toast library */
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"] {
+  background: white !important;
+  border: 1px solid rgb(233 213 255) !important;
+  color: rgb(88 28 135) !important;
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"][data-type="success"] {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  border-color: rgb(34 197 94) !important;
+  color: rgb(22 101 52) !important;
+}
+
+/* Select dropdown styling */
+.select-content {
+  background: white !important;
+  border: 1px solid rgb(233 213 255) !important;
+  border-radius: 8px;
+}
+
+.select-item {
+  color: rgb(88 28 135) !important;
+  background: white !important;
+}
+
+.select-item:hover {
+  background: rgb(250 232 255) !important;
+  color: rgb(88 28 135) !important;
+}
+
+.select-trigger {
+  background: white !important;
+  color: rgb(88 28 135) !important;
+  border: 1px solid rgb(233 213 255) !important;
+}
+
+/* Input focus states */
+.input:focus {
+  border-color: rgb(168 85 247) !important;
+  box-shadow: 0 0 0 3px rgb(168 85 247 / 0.1) !important;
+}
+
+/* Ensure no yellow backgrounds anywhere */
+* {
+  background-color: inherit;
+}
+
+/* Override any yellow backgrounds */
+[style*="background-color: yellow"],
+[style*="background: yellow"],
+[class*="bg-yellow"] {
+  background-color: white !important;
+  color: rgb(88 28 135) !important;
+}
+
+/* Force white backgrounds for form elements */
+.form-input,
+.form-textarea,
+.form-select {
+  background-color: white !important;
+  color: rgb(88 28 135) !important;
+  border: 1px solid rgb(233 213 255) !important;
+}
