@@ -27,7 +27,7 @@ app.use(cookieParser())
 const io = new Server(server, {
   cors: {
     origin: process.env.NODE_ENV === "production" 
-      ? ["https://your-frontend-domain.com"] 
+      ? ["https://parlour-management-app.vercel.app"] 
       : ["http://localhost:3000"],
     methods: ["GET", "POST"]
   }
@@ -40,7 +40,7 @@ connectDB();
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === "production" 
-    ? ["https://your-frontend-domain.com"] 
+    ? ["https://parlour-management-app.vercel.app"] 
     : ["http://localhost:3000"],
   credentials: true
 }));
