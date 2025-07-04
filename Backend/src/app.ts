@@ -54,7 +54,7 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/attendance", attendanceRoutes);
 
 // Health check endpoint
-app.get("/api/health", (req, res) => {
+app.get("/api/health", (req: any, res: any) => {
   res.json({
     success: true,
     message: "Parlour Management API is running",
@@ -63,7 +63,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Handle 404 for API routes
-app.use("/api/*", (req, res) => {
+app.use("/api/*", (req: any, res: any) => {
   res.status(404).json({
     success: false,
     message: "API endpoint not found"
